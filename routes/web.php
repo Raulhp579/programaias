@@ -17,3 +17,7 @@ Route::get('/resumirPdf', function () {
 Route::get('/gestorRecursos', function () {
     return view('gestorRecursos');
 })->name("gestorRecursos");
+
+Route::get("/chatSistema", function () {
+    return view("chatSistema");
+})->name("chatSistema");

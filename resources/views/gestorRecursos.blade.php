@@ -104,17 +104,21 @@
                 <div class="bg-white rounded-3xl p-6 border border-slate-200">
                     <h4 class="font-bold text-slate-800 mb-4 flex items-center">
                         <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                        Sugerencias del sistema
+                        Estado del sistema
                     </h4>
                     <ul class="space-y-3 text-sm text-slate-500">
-                        <li class="flex items-start">
+                        <li class="flex items-start" id="gpuTemp">
                             <svg class="w-4 h-4 text-slate-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            La temperatura de la GPU es estable.
                         </li>
-                        <li class="flex items-start">
+
+                        <li class="flex items-start" id="latenciaDisco">
                             <svg class="w-4 h-4 text-slate-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            64GB detectados. Ideal para LLMs grandes.
                         </li>
+
+                        <li class="flex items-start" id="uptime">
+                            <svg class="w-4 h-4 text-slate-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -140,6 +144,6 @@
 
         </section>
     </main>
-@vite(['resources/js/app.js', 'resources/js/gestorRecursos.js'])
+@vite(['resources/js/app.js', 'resources/js/gestorRecursos.js','resources/js/echo.js'])
 </body>
 </html>
