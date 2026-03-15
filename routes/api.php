@@ -23,3 +23,4 @@ Route::get("obtenerRespuestas/{id}",[LectorPdfController::class, "obtenerRespues
 
 //chatBot
 Route::get("chatSistema",[ChatController::class, "chatSistema"]);
+Route::get("chatVisual",[ChatController::class, "chatVisual"]);
