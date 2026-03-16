@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joi - Agente de Sistema</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css'])
     <style>
         /* Scrollbar elegante para el chat */
         #chat-messages::-webkit-scrollbar {
@@ -41,53 +41,10 @@
         </header>
 
         <div id="chat-messages" class="flex-1 overflow-y-auto px-4 py-8 w-full">
-            <div class="max-w-3xl mx-auto space-y-10"> <div class="flex items-start space-x-4">
-                    <div class="w-10 h-10 rounded-full bg-indigo-600 flex-shrink-0 flex items-center justify-center text-white shadow-md border-2 border-white mt-1">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <div class="flex-1">
-                        <div class="text-sm font-bold text-slate-800 mb-1">Joi</div>
-                        <div class="prose prose-slate prose-sm max-w-none text-slate-700 leading-relaxed bg-white p-5 rounded-2xl rounded-tl-none shadow-sm border border-slate-200">
-                            <p>Hola. He inicializado los protocolos de diagnóstico. Tu sistema lleva encendido <strong>1d 4h 12m</strong> y todos los componentes operan dentro de los parámetros normales.</p>
-                            <p>Tengo acceso a la consola de PowerShell. ¿Qué necesitas que analice o ejecute por ti hoy?</p>
-                        </div>
-                    </div>
-                </div>
+            <div id="chat-messages-container" class="max-w-3xl mx-auto space-y-10">
 
-                <div class="flex items-start space-x-4">
-                    <div class="w-10 h-10 rounded-full bg-slate-200 flex-shrink-0 flex items-center justify-center text-slate-600 mt-1 border border-slate-300">
-                        <span class="font-bold text-sm">Tú</span>
-                    </div>
-                    <div class="flex-1">
-                        <div class="text-sm font-bold text-slate-800 mb-1">Tú</div>
-                        <div class="prose prose-slate prose-sm max-w-none text-slate-700 leading-relaxed bg-slate-100 p-5 rounded-2xl rounded-tl-none border border-slate-200">
-                            <p>Joi, abre Steam y comprueba si hay algún proceso consumiendo mucha memoria RAM.</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="flex items-start space-x-4">
-                    <div class="w-10 h-10 rounded-full bg-indigo-600 flex-shrink-0 flex items-center justify-center text-white shadow-md border-2 border-white mt-1">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <div class="flex-1">
-                        <div class="text-sm font-bold text-slate-800 mb-1">Joi</div>
-                        <div class="prose prose-slate prose-sm max-w-none text-slate-700 leading-relaxed bg-white p-5 rounded-2xl rounded-tl-none shadow-sm border border-slate-200">
-                            <p>Enseguida. Ejecutando la orden en el sistema host:</p>
-                            
-                            <div class="bg-slate-900 rounded-xl p-4 my-4 font-mono text-sm text-emerald-400 border border-slate-800 shadow-lg">
-                                <div class="flex items-center text-slate-500 mb-2 border-b border-slate-700 pb-2 text-xs uppercase tracking-widest">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M4 18h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                    <span>PowerShell Engine</span>
-                                </div>
-                                <p class="text-slate-300">> Start-Process 'C:\Program Files (x86)\Steam\steam.exe'</p>
-                                <p class="text-slate-300">> Get-Process | Sort-Object WorkingSet -Descending | Select-Object -First 3</p>
-                            </div>
 
-                            <p><strong>Hecho.</strong> Steam se está abriendo. En cuanto a la RAM, el proceso más pesado ahora mismo es <code>vmmem</code> consumiendo 4.2 GB. Tienes 58 GB libres, así que tu i7 tiene recursos de sobra para jugar.</p>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="h-6"></div>
             </div>
@@ -96,6 +53,17 @@
         <div class="flex-shrink-0 bg-gradient-to-t from-slate-50 via-slate-50 to-transparent pt-8 pb-6 px-4">
             <div class="max-w-3xl mx-auto relative">
                 
+                <div id="mode-selector" class="flex gap-4 mb-3 justify-center">
+                    <label class="flex items-center space-x-2 cursor-pointer text-sm text-slate-600 hover:text-indigo-600 transition-colors bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm">
+                        <input type="radio" name="chatMode" value="sistema" class="text-indigo-600 focus:ring-indigo-500 accent-indigo-600" checked>
+                        <span class="font-medium">💻 Modo Sistema (Comandos)</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer text-sm text-slate-600 hover:text-indigo-600 transition-colors bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm">
+                        <input type="radio" name="chatMode" value="visual" class="text-indigo-600 focus:ring-indigo-500 accent-indigo-600">
+                        <span class="font-medium">👁️ Modo Visual (Ver Pantalla)</span>
+                    </label>
+                </div>
+
                 <div class="relative flex items-end shadow-lg rounded-2xl bg-white border border-slate-300 overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 transition-all focus-within:border-indigo-500">
                     
                     <button class="p-4 text-slate-400 hover:text-indigo-600 transition-colors h-14 flex items-center justify-center">
@@ -118,7 +86,9 @@
                 </div>
             </div>
         </div>
+        </div>
     </main>
 
+    @vite(['resources/js/app.js', 'resources/js/echo.js', 'resources/js/chatSistema.js'])
 </body>
 </html>

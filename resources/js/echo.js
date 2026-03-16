@@ -83,3 +83,15 @@ window.Echo.channel("analisisIA").listen(".analisis", (data) => {
 
     escribirLetra();
 });
+
+window.Echo.channel("chatVisualChannel").listen(".completado", (data) => {
+    console.log("Datos Visuales de Joi recibidos:", data);
+
+    if (window.appendJoiMessage) {
+        if (data.success) {
+            window.appendJoiMessage(data.respuesta || "Análisis visual completado sin respuesta.");
+        } else {
+            window.appendJoiMessage(`<span class="text-red-500">Error en el análisis visual: ${data.mensaje}</span>`, true);
+        }
+    }
+});
